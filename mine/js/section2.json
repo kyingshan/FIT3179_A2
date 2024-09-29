@@ -1,0 +1,262 @@
+{
+    "$schema": "https://vega.github.io/schema/vega-lite/v5.1.0.json",
+    "vconcat": [
+      {
+        "title": {
+          "text": [
+            "Top 10 Countries of Birth(Oversea) of residents",
+            "in Malaysia in 2023"
+          ],
+          "subtitle": "Rank based on population of the residents",
+          "subtitleColor": "gray",
+          "subtitleFontStyle": "italic",
+          "dy": -10
+        },
+        "width": 380,
+        "height": 300,
+        "data": {
+          "url": "https://raw.githubusercontent.com/kyingshan/FIT3179_A2/refs/heads/main/mine/dataset/top10_nationality.csv",
+          "format": {"type": "csv"}
+        },
+        "transform": [
+          {
+            "lookup": "Country",
+            "from": {
+              "data": {
+                "url": "https://raw.githubusercontent.com/melvinalex7/FIT3179/main/Assignment_2/data/flags.csv"
+              },
+              "key": "Country",
+              "fields": ["ImageURL"]
+            }
+          }
+        ],
+        "encoding": {
+          "x": {
+            "field": "Year",
+            "type": "ordinal",
+            "sort": ["2013", "2018", "2023"],
+            "axis": {"labelAngle": 0}
+          },
+          "y": {
+            "field": "Rank",
+            "type": "quantitative",
+            "sort": "descending",
+            "scale": {"domain": [0.5, 10.5]}
+          }
+        },
+        "layer": [
+          {
+            "params": [
+              {
+                "name": "select",
+                "select": {"type": "point", "fields": ["Country"]}
+              }
+            ],
+            "mark": {
+              "type": "line",
+              "cursor": "pointer",
+              "point": {"filled": false, "fill": "white"}
+            },
+            "encoding": {
+              "color": {
+                "field": "Country",
+                "bandPosition": 0,
+                "legend": null,
+                "scale": {
+                  "range": [
+                    "#4e79a7",
+                    "#edc948",
+                    "#f28e2b",
+                    "#c9c776",
+                    "#bab0ac",
+                    "#8ad6d0",
+                    "#8452bd",
+                    "#9c755f",
+                    "#5aa24f",
+                    "#bea3d5"
+                  ]
+                }
+              }
+            }
+          },
+          {
+            "mark": {
+              "type": "image",
+              "width": 35,
+              "height": 18,
+              "tooltip": true,
+              "cursor": "pointer"
+            },
+            "transform": [
+              {
+                "lookup": "Country",
+                "from": {
+                  "data": {
+                    "url": "https://raw.githubusercontent.com/kyingshan/FIT3179_A2/refs/heads/main/mine/dataset/top10_nationality.csv",
+                    "format": {"type": "csv"}
+                  },
+                  "key": "Country",
+                  "fields": ["Population", "Year"]
+                }
+              }
+            ],
+            "encoding": {
+              "url": {"field": "ImageURL", "type": "nominal"},
+              "tooltip": [
+                {"field": "Country", "type": "nominal"},
+                {"field": "Population", "type": "quantitative", "format": ","}
+              ]
+            }
+          }
+        ]
+      },
+      {
+        "width": 380,
+        "height": 170,
+        "title": {
+          "text": ["Arrival Population of Melbourne Residents", "From Oversea, 1951-2020"],
+          "subtitle": "Population recorded based on arrival years and CoB",
+          "subtitleColor": "gray",
+          "subtitleFontStyle": "italic",
+          "dy": -20
+        },
+        "encoding": {
+          "x": {
+            "field": "Year",
+            "type": "nominal",
+            "axis": {"labelAngle": -30}
+            // ,
+            // "sort": [
+            //   "before 1951",
+            //   "1951-1960",
+            //   "1961-1970",
+            //   "1971-1980",
+            //   "1981-1990",
+            //   "1991-2000",
+            //   "2001-2010",
+            //   "2011-2020"
+            // ]
+          },
+          "y": {"field": "Population", "type": "quantitative"},
+          "color": {"field": "Country"},
+          "tooltip": [
+            {"field": "Population", "type": "quantitative", "format": ","},
+            {"field": "Country", "type": "nominal"}
+          ]
+        },
+        "layer": [
+          {
+            "data": {
+              "url": "https://raw.githubusercontent.com/kyingshan/FIT3179_A2/refs/heads/main/mine/dataset/immigration.csv",
+              "format": {"type": "csv"}
+            },
+            "mark": {"type": "line", "tooltip": true, "point": {"filled": true}},
+            "transform": [{"filter": {"param": "select"}}]
+          },
+          // {
+          //   "data": {
+          //     "url": "https://raw.githubusercontent.com/kyingshan/FIT3179_A2/refs/heads/main/mine/dataset/immigration.csv",
+          //     "format": {"type": "csv"}
+          //   },
+          //   "mark": {"type": "text", "fontSize": 13, "align": "left", "dx": -50, "dy":20, "font":"Bitter", "fontWeight":"bold"},
+          //   "transform": [
+          //     {"filter": {"param": "select", "empty": false}},
+          //     {"filter": "datum.Country == 'United Kingdom'"},
+          //     {"filter": "datum.Year == '2019-2023'"},
+          //     {"calculate": "datum.Country", "as": "coun"}
+          //   ],
+          //   "encoding": {
+          //     "text": {"condition": {"param": "select", "field": "coun"}}
+          //   }
+          // },
+          {
+            "data": {
+              "url": "https://raw.githubusercontent.com/kyingshan/FIT3179_A2/refs/heads/main/mine/dataset/immigration.csv",
+              "format": {"type": "csv"}
+            },
+            "mark": {"type": "text", "fontSize": 13, "align": "left", "dx": -30, "dy":-20, "font":"Bitter", "fontWeight":"bold"},
+            "transform": [
+              {"filter": {"param": "select", "empty": false}},
+              {"filter": "datum.Country == 'Australia' || datum.Country == 'Brunei' || datum.Country == 'China' ||datum.Country == 'India' || datum.Country == 'Indonesia' || datum.Country == 'South Korea' || datum.Country == 'Philippines' || datum.Country == 'Thailand' || datum.Country == 'Vietnam'"},
+              {"filter": "datum.Year == '2019-2023'"},
+              {"calculate": "datum.Country", "as": "coun"}
+            ],
+            "encoding": {
+              "text": {"condition": {"param": "select", "field": "coun"}}
+            }
+          },
+          {
+            "data": {
+              "url": "https://raw.githubusercontent.com/kyingshan/FIT3179_A2/refs/heads/main/mine/dataset/immigration.csv",
+              "format": {"type": "csv"}
+            },
+            "mark": {"type": "text", "fontSize": 13, "align": "left", "dx": 10, "font":"Bitter",
+            "fontWeight":"bold"},
+            "transform": [
+              {"filter": {"param": "select", "empty": true}},
+              {"filter": "datum.Year == '2019-2023'"},
+              {"filter": "datum.Country == 'Singapore'"},
+              {"calculate": "datum.Country", "as": "coun"}
+            ],
+            "encoding": {
+              "text": {"condition": {"param": "select", "field": "coun"}}
+            }
+          },
+          // {
+          //   "data": {
+          //     "url": "https://raw.githubusercontent.com/kyingshan/FIT3179_A2/refs/heads/main/mine/dataset/immigration.csv",
+          //     "format": {"type": "csv"}
+          //   },
+          //   "mark": {"type": "text", "fontSize": 13, "align": "left", "dx": -340, 
+          //   "font":"Bitter",
+          //   "fontWeight":"bold",
+          //   "tooltip":false,
+          //   "dy":0,
+          //   "color":"darkblue"},
+          //   "transform": [
+          //     {"filter": {"param": "select", "empty": true}},
+          //     {"filter": "datum.Year == '2019-2023'"},
+          //     {"filter": "datum.Country == 'Singapore'"},
+          //     {"calculate": "'Residents from India living in Melbourne; are the most populous and fastest growing; residents today'", "as": "raw"},
+          //     {"calculate": "split(datum.raw, ';')", "as": "coun"}
+          //   ],
+          //   "encoding": {
+
+          //     "text": {"condition": {"param": "select", "field": "coun"}
+          //   }
+          //   }
+          // },
+          // {
+          //   "data": {
+          //     "url": "https://raw.githubusercontent.com/kyingshan/FIT3179_A2/refs/heads/main/mine/dataset/immigration.csv",
+          //     "format": {"type": "csv"}
+          //   },
+          //   "mark": {"type": "text", "fontSize": 13, "align": "left", "dx": -340,
+          //   "font":"Bitter",
+          //   "fontWeight":"bold",
+          //   "tooltip":false,
+          //   "dy":-95,
+          //   "color":"darkblue"},
+          //   "transform": [
+          //     {"filter": {"param": "select", "empty": true}},
+          //     {"filter": "datum.Year == '2019-2023'"},
+          //     {"filter": "datum.Country == 'India'"},
+          //     {"calculate": "'European countries like Greece; have melbourne residents descreased; since 1961-1970'", "as": "raw"},
+          //     {"calculate": "split(datum.raw, ';')", "as": "coun"}
+          //   ],
+          //   "encoding": {
+
+          //     "text": {"condition": {"param": "select", "field": "coun"}
+          //   }
+          //   }
+          // }
+        ]
+      }
+    ],
+    "config": {
+        "style": {"cell": {"stroke": "transparent"}},
+        "font": "Arial",
+        "title": {"fontSize": 17}
+    }
+  }
+  
