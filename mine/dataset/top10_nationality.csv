@@ -1,24 +1,4 @@
 Year,Country,Population,Rank
-2023,Singapore,8308230,1
-2023,Indonesia,3108165,2
-2023,Thailand,1551282,3
-2023,China,1474114,4
-2023,Brunei,811833,5
-2023,India,671846,6
-2023,South Korea,400853,7
-2023,Vietnam,344361,8
-2023,Australia,343438,9
-2023,Philippines,339282,10
-2018,Singapore,10615986,1
-2018,Indonesia,3277689,2
-2018,Thailand,1914692,4
-2018,China,2944133,3
-2018,Brunei,1382031,5
-2018,India,600311,7
-2018,South Korea,616783,6
-2018,Vietnam,375578,9
-2018,Australia,351500,10
-2018,Philippines,396062,8
 2013,Singapore,13178774,1
 2013,Indonesia,2548021,2
 2013,Thailand,1156452,5
@@ -29,3 +9,23 @@ Year,Country,Population,Rank
 2013,Vietnam,235700,10
 2013,Australia,526342,8
 2013,Philippines,557147,7
+2018,Singapore,10615986,1
+2018,Indonesia,3277689,2
+2018,Thailand,1914692,4
+2018,China,2944133,3
+2018,Brunei,1382031,5
+2018,India,600311,7
+2018,South Korea,616783,6
+2018,Vietnam,375578,9
+2018,Australia,351500,10
+2018,Philippines,396062,8
+2023,Singapore,8308230,1
+2023,Indonesia,3108165,2
+2023,Thailand,1551282,3
+2023,China,1474114,4
+2023,Brunei,811833,5
+2023,India,671846,6
+2023,South Korea,400853,7
+2023,Vietnam,344361,8
+2023,Australia,343438,9
+2023,Philippines,339282,10
