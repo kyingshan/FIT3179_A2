@@ -1,11 +1,6 @@
-death_cause,value
-COVID-19 infection,31063
-Ischaemic heart diseases,21485
-Pneumonia,17503
-Cerebrovascular diseases,10181
-Transport accidents,3062
-Diabetes mellitus,2792
-Malignant neoplasm of trachea, bronchus and lung,2679
-Hypertensive diseases,2642
-Chronic lower respiratory diseases,2337
-Malignant neoplasm of colon, rectum and anus,2212
+death_cause,value,percentage
+COVID-19 infection,31063,37.29
+Ischaemic heart diseases,21485,25.79
+Pneumonia,17503,21.01
+Cerebrovascular diseases,10181,12.22
+Transport accidents,3062,3.69
